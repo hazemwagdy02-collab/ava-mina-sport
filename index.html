@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0f14" />
+  <title>AVA MINA SPORT | إدارة الدوري</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-btn hidden" id="backBtn" aria-label="رجوع">←</button>
+      <div class="brand-block">
+        <p class="eyebrow">AVA MINA SPORT</p>
+        <h1 id="pageTitle">إدارة الدوري</h1>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="تغيير المظهر">☀️</button>
+    </header>
+
+    <main id="appMain" class="main-content">
+      <section id="homeView" class="view active" data-title="إدارة الدوري">
+        <div class="home-simple">
+          <button class="home-create-btn" data-action="new-tournament">إنشاء الدوري</button>
+        </div>
+      </section>
+
+      <section id="tournamentSetupView" class="view" data-title="إنشاء دوري">
+        <div class="page-intro crest-intro">
+          <span class="pill gold">🏆 دوري جديد</span>
+          <h2>إعداد الدوري</h2>
+          <p>أدخل اسم الدوري والتاريخ ثم أضف اللاعبين، وبعدها أنشئ القرعة.</p>
+        </div>
+
+        <div class="form-card">
+          <div class="field-grid two-col">
+            <label class="field">
+              <span>اسم الدوري <small>اختياري</small></span>
+              <input id="tournamentName" type="text" maxlength="80" placeholder="مثال: دوري AVA Mina" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>التاريخ <small>اختياري</small></span>
+              <input id="tournamentDate" type="date" />
+            </label>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="card-head">
+            <div>
+              <span class="section-kicker">المشاركون</span>
+              <h3>أسماء اللاعبين</h3>
+            </div>
+            <span id="playerCountBadge" class="count-badge">0 / 50</span>
+          </div>
+
+          <div id="playersInputs" class="dynamic-list"></div>
+          <button id="addPlayerBtn" class="btn btn-secondary full">＋ إضافة لاعب</button>
+
+          <div class="fee-summary">
+            <div><span>عدد المشاركين</span><strong id="tournamentPlayerCount">0</strong></div>
+            <div><span>رسوم الفرد</span><strong>5 جنيه</strong></div>
+            <div class="accent"><span>إجمالي الاشتراكات</span><strong id="tournamentTotalFees">0 جنيه</strong></div>
+          </div>
+        </div>
+
+        <button id="createTournamentBtn" class="btn btn-primary btn-xl sticky-action">إنشاء القرعة 🏆</button>
+      </section>
+
+      <section id="tournamentView" class="view" data-title="الدوري">
+        <div id="tournamentHeader" class="activity-header"></div>
+        <div id="tournamentProgress" class="progress-strip"></div>
+        <div id="tournamentRounds" class="rounds-container"></div>
+
+        <div class="page-actions">
+          <button class="btn btn-secondary" data-action="tournament-report">📊 التقرير</button>
+          <button class="btn btn-danger-soft" data-action="reset-tournament">حذف الدوري</button>
+        </div>
+      </section>
+
+      <section id="reportsView" class="view" data-title="التقارير">
+        <div class="page-intro crest-intro">
+          <span class="pill muted">📊 التقارير</span>
+          <h2>تقرير الدوري</h2>
+          <p>اعرض آخر تقرير محفوظ للدوري الحالي أو الدوري الأخير الذي تم إنشاؤه.</p>
+        </div>
+        <div id="reportsList" class="report-list"></div>
+      </section>
+
+      <section id="reportDetailView" class="view" data-title="التقرير">
+        <div id="reportDetail"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="التنقل الرئيسي">
+      <button class="active" data-nav="homeView"><span>🏠</span><small>الرئيسية</small></button>
+      <button data-nav="tournamentView"><span>🏆</span><small>الدوري</small></button>
+      <button data-nav="reportsView"><span>📊</span><small>التقارير</small></button>
+    </nav>
+  </div>
+
+  <div id="bottomSheetBackdrop" class="sheet-backdrop hidden"></div>
+  <section id="winnerSheet" class="bottom-sheet hidden" aria-modal="true" role="dialog">
+    <div class="sheet-handle"></div>
+    <div id="winnerSheetContent"></div>
+  </section>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
